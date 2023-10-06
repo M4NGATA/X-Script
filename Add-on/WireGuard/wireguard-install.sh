@@ -3,14 +3,14 @@
 # Установщик безопасного сервера WireGuard
 # https://github.com/angristan/wireguard-install
 
-КРАСНЫЙ='\033[0;31m'
-ОРАНЖЕВЫЙ='\033[0;33m'
-ЗЕЛЕНЫЙ='\033[0;32m'
-СБРОС='\033[0m'
+RED='\033[0;31m'
+ORANGE='\033[0;33m'
+GREEN='\033[0;32m'
+NC='\033[0m'
 
 function isRoot() {
 	if [ "${EUID}" -ne 0 ]; then
-		echo "Вы должны запустить этот скрипт с правами root"
+		echo "Необходимо запустить этот скрипт от имени root"
 		exit 1
 	fi
 }
@@ -25,8 +25,8 @@ function checkVirt() {
 		echo "LXC не поддерживается (пока)."
 		echo "WireGuard теоретически может работать в контейнере LXC,"
 		echo "но модуль ядра должен быть установлен на хосте,"
-		echo "контейнер должен быть запущен с определенными параметрами"
-		echo "и в контейнере должны быть установлены только инструменты."
+		echo "контейнер должен быть запущен с некоторыми специфическими параметрами"
+		echo "и в контейнере должны быть установлены только необходимые инструменты."
 		exit 1
 	fi
 }
@@ -36,24 +36,24 @@ function checkOS() {
 	OS="${ID}"
 	if [[ ${OS} == "debian" || ${OS} == "raspbian" ]]; then
 		if [[ ${VERSION_ID} -lt 10 ]]; then
-			echo "Ваша версия Debian (${VERSION_ID}) не поддерживается. Пожалуйста, используйте Debian 10 Buster или более позднюю версию"
+			echo "Ваша версия Debian (${VERSION_ID}) не поддерживается. Используйте Debian 10 Buster или более позднюю версию."
 			exit 1
 		fi
-		OS=debian # переопределяем, если это raspbian
+		OS=debian # переопределить, если raspbian
 	elif [[ ${OS} == "ubuntu" ]]; then
 		RELEASE_YEAR=$(echo "${VERSION_ID}" | cut -d'.' -f1)
 		if [[ ${RELEASE_YEAR} -lt 18 ]]; then
-			echo "Ваша версия Ubuntu (${VERSION_ID}) не поддерживается. Пожалуйста, используйте Ubuntu 18.04 или более позднюю версию"
+			echo "Ваша версия Ubuntu (${VERSION_ID}) не поддерживается. Используйте Ubuntu 18.04 или более позднюю версию."
 			exit 1
 		fi
 	elif [[ ${OS} == "fedora" ]]; then
 		if [[ ${VERSION_ID} -lt 32 ]]; then
-			echo "Ваша версия Fedora (${VERSION_ID}) не поддерживается. Пожалуйста, используйте Fedora 32 или более позднюю версию"
+			echo "Ваша версия Fedora (${VERSION_ID}) не поддерживается. Используйте Fedora 32 или более позднюю версию."
 			exit 1
 		fi
 	elif [[ ${OS} == 'centos' ]] || [[ ${OS} == 'almalinux' ]] || [[ ${OS} == 'rocky' ]]; then
 		if [[ ${VERSION_ID} == 7* ]]; then
-			echo "Ваша версия CentOS (${VERSION_ID}) не поддерживается. Пожалуйста, используйте CentOS 8 или более позднюю версию"
+			echo "Ваша версия CentOS (${VERSION_ID}) не поддерживается. Используйте CentOS 8 или более позднюю версию."
 			exit 1
 		fi
 	elif [[ -e /etc/oracle-release ]]; then
@@ -62,7 +62,7 @@ function checkOS() {
 	elif [[ -e /etc/arch-release ]]; then
 		OS=arch
 	else
-		echo "Похоже, вы запускаете этот установщик не на системе Debian, Ubuntu, Fedora, CentOS, AlmaLinux, Oracle или Arch Linux"
+		echo "Похоже, вы запускаете этот установщик не на Debian, Ubuntu, Fedora, CentOS, AlmaLinux, Oracle или Arch Linux."
 		exit 1
 	fi
 }
@@ -71,18 +71,18 @@ function getHomeDirForClient() {
 	local CLIENT_NAME=$1
 
 	if [ -z "${CLIENT_NAME}" ]; then
-		echo "Ошибка: getHomeDirForClient() требует имя клиента в качестве аргумента"
+		echo "Ошибка: функция getHomeDirForClient() требует имя клиента в качестве аргумента"
 		exit 1
 	fi
 
-	# Домашний каталог пользователя, в котором будет записана конфигурация клиента
+	# Домашняя директория пользователя, где будет записана конфигурация клиента
 	if [ -e "/home/${CLIENT_NAME}" ]; then
 		# если $1 - это имя пользователя
 		HOME_DIR="/home/${CLIENT_NAME}"
 	elif [ "${SUDO_USER}" ]; then
 		# если нет, используйте SUDO_USER
 		if [ "${SUDO_USER}" == "root" ]; then
-			# Если sudo запущен от root
+			# Если запущено sudo как root
 			HOME_DIR="/root"
 		else
 			HOME_DIR="/home/${SUDO_USER}"
@@ -102,203 +102,238 @@ function initialCheck() {
 }
 
 function installQuestions() {
-	echo -e "${ЗЕЛЕНЫЙ}Добро пожаловать в установщик WireGuard!${СБРОС}"
+	echo "Добро пожаловать в установщик WireGuard!"
+	echo "Репозиторий git доступен по адресу: https://github.com/angristan/wireguard-install"
 	echo ""
-	echo "Мы начнем установку WireGuard на вашем сервере."
-	echo "Пожалуйста, отвечайте на вопросы, чтобы настроить ваш VPN."
+	echo "Мне нужно задать вам несколько вопросов перед началом установки."
+	echo "Вы можете оставить параметры по умолчанию, просто нажав Enter, если они вас устраивают."
+	echo ""
 
-	# Ввод имени нового клиента
-	read -p "Имя нового клиента: " -e -i client CLIENT_NAME
+	# Определите общедоступный IPv4- или IPv6-адрес и предварительно заполните его для пользователя
+	SERVER_PUB_IP=$(ip -4 addr | sed -ne 's|^.* inet \([^/]*\)/.* scope global.*$|\1|p' | awk '{print $1}' | head -1)
+	if [[ -z ${SERVER_PUB_IP} ]]; then
+		# Определите общедоступный IPv6-адрес
+		SERVER_PUB_IP=$(ip -6 addr | sed -ne 's|^.* inet6 \([^/]*\)/.* scope global.*$|\1|p' | head -1)
+	fi
+	read -rp "IPv4 или IPv6 общедоступный адрес: " -e -i "${SERVER_PUB_IP}" SERVER_PUB_IP
 
-	# Проверка существования клиента с таким именем
-	if [[ -e "/etc/wireguard/clients/${CLIENT_NAME}.conf" ]]; then
-		echo ""
-		echo "${КРАСНЫЙ}Клиент с именем ${CLIENT_NAME} уже существует.${СБРОС}"
-		exit 1
+	# Определите общедоступный интерфейс и предварительно заполните его для пользователя
+	SERVER_NIC="$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)"
+	until [[ ${SERVER_PUB_NIC} =~ ^[a-zA-Z0-9_]+$ ]]; do
+		read -rp "Общедоступный интерфейс: " -e -i "${SERVER_NIC}" SERVER_PUB_NIC
+	done
+
+	until [[ ${SERVER_WG_NIC} =~ ^[a-zA-Z0-9_]+$ && ${#SERVER_WG_NIC} -lt 16 ]]; do
+		read -rp "Имя интерфейса WireGuard: " -e -i wg0 SERVER_WG_NIC
+	done
+
+	until [[ ${SERVER_WG_IPV4} =~ ^([0-9]{1,3}\.){3} ]]; do
+		read -rp "IPv4-адрес для WireGuard: " -e -i 10.66.66.1 SERVER_WG_IPV4
+	done
+
+	until [[ ${SERVER_WG_IPV6} =~ ^([0-9a-fA-F]{0,4}:){2,7}[0-9a-fA-F]{0,4} ]]; do
+		read -rp "IPv6-адрес для WireGuard (необязательно): " -e -i "" SERVER_WG_IPV6
+	done
+
+	# Клиенты DNS
+	until [[ ${CLIENT_DNS} =~ ^[a-zA-Z0-9.,]+$ ]]; do
+		read -rp "DNS для клиентов: " -e -i 1.1.1.1 CLIENT_DNS
+	done
+
+	# Переделываем рекомендации для IPv6
+	if [[ ! ${SERVER_WG_IPV6} ]]; then
+		CLIENT_WG_IPV6="fd42:42:42::1/64"
+	else
+		CLIENT_WG_IPV6="${SERVER_WG_IPV6}"
 	fi
 
-	# Выбор IPv4 адреса для VPN сервера
+	# Максимальное количество подключений клиента
+	until [[ ${CLIENT_CONNECTIONS} =~ ^[0-9]+$ && ${CLIENT_CONNECTIONS} -gt 0 ]]; do
+		read -rp "Максимальное количество подключений клиента: " -e -i 5 CLIENT_CONNECTIONS
+	done
+
 	echo ""
-	echo "Выберите, какой IPv4 адрес вы хотите использовать для вашего VPN сервера:"
-	echo "   1) Автоматический (текущий IPv4 адрес)"
-	echo "   2) Ввести собственный IPv4 адрес"
-	read -p "Выбор [1-2]: " -e -i 1 IPV4_CHOICE
-
-	# Ввод собственного IPv4 адреса
-	if [[ ${IPV4_CHOICE} == 2 ]]; then
-		read -p "Введите IPv4 адрес: " -e IPV4_ADDRESS
-
-		# Проверка валидности введенного IPv4 адреса
-		if [[ ! ${IPV4_ADDRESS} =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
-			echo ""
-			echo "${КРАСНЫЙ}Неверный формат IPv4 адреса.${СБРОС}"
-			exit 1
-		fi
-
-		# Проверка, что введенный IPv4 адрес не является локальным
-		if [[ ${IPV4_ADDRESS} == 127.0.0.* ]] || [[ ${IPV4_ADDRESS} == 10.* ]] || [[ ${IPV4_ADDRESS} == 172.16.* ]] || [[ ${IPV4_ADDRESS} == 192.168.* ]]; then
-			echo ""
-			echo "${КРАСНЫЙ}Вы ввели локальный IPv4 адрес, который не подходит.${СБРОС}"
-			exit 1
-		fi
-	fi
-
-	# Выбор IPv6 адреса для VPN сервера
+	echo "Доступ к SSH на сервере будет ограничен только по WireGuard (или с помощью ключей)"
+	echo "И отключен парольный доступ"
+	read -n1 -r -p "Нажмите любую клавишу, чтобы продолжить..."
 	echo ""
-	echo "Выберите, какой IPv6 адрес вы хотите использовать для вашего VPN сервера:"
-	echo "   1) Автоматический (текущий IPv6 адрес)"
-	echo "   2) Ввести собственный IPv6 адрес"
-	read -p "Выбор [1-2]: " -e -i 1 IPV6_CHOICE
-
-	# Ввод собственного IPv6 адреса
-	if [[ ${IPV6_CHOICE} == 2 ]]; then
-		read -p "Введите IPv6 адрес (/128): " -e IPV6_ADDRESS
-
-		# Проверка валидности введенного IPv6 адреса
-		if [[ ! ${IPV6_ADDRESS} =~ ^([a-f0-9:]+\/128)$ ]]; then
-			echo ""
-			echo "${КРАСНЫЙ}Неверный формат IPv6 адреса.${СБРОС}"
-			exit 1
-		fi
-	fi
-
-	# Выбор порта для WireGuard
-	echo ""
-	echo "Выберите порт для WireGuard (по умолчанию: 51820):"
-	read -p "Порт [51820]: " -e -i 51820 WG_PORT
-
-	# Выбор DNS сервера
-	echo ""
-	echo "Выберите DNS сервер, который будет использоваться клиентами:"
-	echo "   1) Текущие системные DNS серверы"
-	echo "   2) Ввести другие DNS серверы"
-	read -p "Выбор [1-2]: " -e -i 1 DNS_CHOICE
-
-	# Ввод собственных DNS серверов
-	if [[ ${DNS_CHOICE} == 2 ]]; then
-		read -p "Введите DNS серверы через запятую: " -e DNS_SERVERS
-	fi
-
-	# Готовность к началу установки
-	echo ""
-	echo "Готов к началу установки? [y/n]: "
-	read -e CONTINUE
-	if [[ ! ${CONTINUE} =~ ^(y|Y)$ ]]; then
-		echo "Установка отменена"
-		exit 1
-	fi
 }
 
 function installWireGuard() {
 	# Установка WireGuard
-	echo ""
-	echo -e "${ЗЕЛЕНЫЙ}Установка WireGuard...${СБРОС}"
-	apt-get update
-	apt-get install -y wireguard
+	echo -e "Установка ${GREEN}WireGuard${NC}..."
+	if [[ ${OS} == 'ubuntu' ]]; then
+		apt-get install -y wireguard
+	elif [[ ${OS} == 'debian' ]]; then
+		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable.list
+		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
+		apt-get update
+		apt-get install -y wireguard
+		rm /etc/apt/sources.list.d/unstable.list
+		rm /etc/apt/preferences.d/limit-unstable
+	elif [[ ${OS} == 'fedora' ]]; then
+		dnf copr enable jdoss/wireguard
+		dnf install -y wireguard-dkms wireguard-tools
+	elif [[ ${OS} == 'centos' ]] || [[ ${OS} == 'almalinux' ]] || [[ ${OS} == 'rocky' ]]; then
+		dnf install -y epel-release elrepo
+		dnf install -y kmod-wireguard wireguard-tools
+	fi
 
-	# Загрузка модуля ядра
-	modprobe wireguard
-
-	# Активация модуля при загрузке системы
-	echo "wireguard" >> /etc/modules-load.d/modules.conf
-
-	# Установка утилиты wg
-	apt-get install -y wireguard-tools
-
-	# Проверка, что WireGuard установлен
-	if ! dpkg -l | grep -q wireguard; then
-		echo ""
-		echo "${КРАСНЫЙ}Установка WireGuard не удалась.${СБРОС}"
+	# Проверка, установлен ли WireGuard
+	if ! modprobe -nq wireguard; then
+		echo -e "${RED}Ошибка: Установка WireGuard не удалась.${NC}"
+		echo "Вероятно, ваше ядро не поддерживает WireGuard."
+		echo "Пожалуйста, убедитесь, что вы используете ядро с поддержкой WireGuard."
 		exit 1
 	fi
 }
 
-function configureFirewall() {
-	# Настройка правил iptables
-	echo ""
-	echo -e "${ЗЕЛЕНЫЙ}Настройка правил iptables...${СБРОС}"
+function setSysctl() {
+	# Включение IP-пересылки и IP-прямой отправки
+	echo -e "Настройка ${GREEN}sysctl${NC}..."
 
-	# Открытие порта для WireGuard
-	ufw allow ${WG_PORT}/udp
+	if ! grep -q "net.ipv4.ip_forward" /etc/sysctl.conf; then
+		echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+	fi
 
-	# Включение NAT
-	sed -i '/net.ipv4.ip_forward=/c\net.ipv4.ip_forward=1' /etc/sysctl.conf
+	if ! grep -q "net.ipv4.conf.all.send_redirects" /etc/sysctl.conf; then
+		echo "net.ipv4.conf.all.send_redirects = 0" >> /etc/sysctl.conf
+	fi
+
+	if ! grep -q "net.ipv4.conf.default.send_redirects" /etc/sysctl.conf; then
+		echo "net.ipv4.conf.default.send_redirects = 0" >> /etc/sysctl.conf
+	fi
+
+	if [[ ${SERVER_WG_IPV6} ]]; then
+		if ! grep -q "net.ipv6.conf.all.forwarding" /etc/sysctl.conf; then
+			echo "net.ipv6.conf.all.forwarding = 1" >> /etc/sysctl.conf
+		fi
+
+		if ! grep -q "net.ipv6.conf.default.forwarding" /etc/sysctl.conf; then
+			echo "net.ipv6.conf.default.forwarding = 1" >> /etc/sysctl.conf
+		fi
+	fi
+
 	sysctl -p
-
-	# Настройка правил iptables для маршрутизации трафика через VPN
-	iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o $(ip route show | grep -o "dev \K[^ ]+") -j MASQUERADE
-	iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-	iptables -A FORWARD -m conntrack --ctstate NEW -s 10.0.0.0/24 -j ACCEPT
-
-	# Сохранение правил iptables
-	iptables-save > /etc/iptables/rules.v4
 }
 
-function generateClientConfig() {
-	# Генерация конфигурации для клиента
+function installUFW() {
+	# Установка и настройка UFW
+	echo -e "Установка и настройка ${GREEN}UFW${NC} (брандмауэр)..."
+
+	apt-get install -y ufw
+
+	# Настройка UFW для SSH и WireGuard
+	ufw allow OpenSSH
+	ufw allow 51820/udp
+	echo "y" | ufw enable
+}
+
+function generateKeys() {
+	# Генерация ключей сервера
+	echo -e "Генерация ключей WireGuard..."
+
+	mkdir -p /etc/wireguard/
+	cd /etc/wireguard/ || exit
+
+	umask 077
+	wg genkey | tee privatekey | wg pubkey > publickey
+	SERVER_PRIVATE_KEY=$(cat privatekey)
+	SERVER_PUBLIC_KEY=$(cat publickey)
+}
+
+function generateServerConfig() {
+	# Создание конфигурационного файла для сервера
+	echo -e "Создание конфигурационного файла для сервера..."
+
+	echo "[Interface]
+Address = ${SERVER_WG_IPV4}
+${SERVER_WG_IPV6:+Address = ${SERVER_WG_IPV6}}
+ListenPort = 51820
+PrivateKey = ${SERVER_PRIVATE_KEY}
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o ${SERVER_PUB_NIC} -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o ${SERVER_PUB_NIC} -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o ${SERVER_PUB_NIC} -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o ${SERVER_PUB_NIC} -j MASQUERADE
+SaveConfig = true" > wg0.conf
+}
+
+function addClient() {
+	# Добавление нового клиента
+	echo -e "Добавление нового клиента..."
+
+	CLIENT_NAME=$(tr -dc 'a-z0-9' < /dev/urandom | head -c 12)
+
+	mkdir -p /etc/wireguard/clients
+	cd /etc/wireguard/clients || exit
+
+	umask 077
+	wg genkey | tee "${CLIENT_NAME}_privatekey" | wg pubkey > "${CLIENT_NAME}_publickey"
+
+	CLIENT_PRIVATE_KEY=$(cat "${CLIENT_NAME}_privatekey")
+	CLIENT_PUBLIC_KEY=$(cat "${CLIENT_NAME}_publickey")
+
+	echo -e "[Peer]
+PublicKey = ${CLIENT_PUBLIC_KEY}
+AllowedIPs = ${CLIENT_WG_IPV4}
+${CLIENT_WG_IPV6:+AllowedIPs = ${CLIENT_WG_IPV6}}" > "${CLIENT_NAME}_peer.conf"
+
+	# Добавление конфигурации клиента в файл
+	echo -e "\nКонфигурация для нового клиента (${CLIENT_NAME}_peer.conf):"
+	cat "${CLIENT_NAME}_peer.conf"
 	echo ""
-	echo -e "${ЗЕЛЕНЫЙ}Генерация конфигурации для клиента...${СБРОС}"
+}
 
-	# Создание ключей для клиента
-	wg genkey | tee client_private_key | wg pubkey > client_public_key
-	WG_CLIENT_PRIVATE_KEY=$(cat client_private_key)
-	WG_CLIENT_PUBLIC_KEY=$(cat client_public_key)
-
-	# Создание конфигурационного файла для клиента
-	cat > client-wg0.conf <<EOF
-[Interface]
-PrivateKey = ${WG_CLIENT_PRIVATE_KEY}
-Address = 10.0.0.2/24
-DNS = 1.1.1.1
-
-[Peer]
-PublicKey = ${WG_SERVER_PUBLIC_KEY}
-Endpoint = ${SERVER_IP}:${WG_PORT}
-AllowedIPs = 0.0.0.0/0,::/0
-EOF
-
-	# Очистка временных файлов
-	rm -f client_private_key client_public_key
-
-	# Перемещение файла конфигурации для клиента в домашнюю директорию
-	mv client-wg0.conf ~/
-
-	# Печать конфигурации для клиента
+function showClientConfig() {
+	# Показать конфигурацию клиента
+	echo -e "Конфигурация клиента ${GREEN}${CLIENT_NAME}${NC} (${CLIENT_NAME}_peer.conf):"
+	cat "/etc/wireguard/clients/${CLIENT_NAME}_peer.conf"
 	echo ""
-	echo -e "${ЖЕЛТЫЙ}Конфигурация для клиента создана и доступна по пути: ~/client-wg0.conf.${СБРОС}"
+}
+
+function createQRCode() {
+	# Создание QR-кода для конфигурации клиента
+	qrencode -t ansiutf8 < "/etc/wireguard/clients/${CLIENT_NAME}_peer.conf"
+}
+
+function updateFirewallRules() {
+	# Обновление правил брандмауэра
+	echo -e "Обновление правил брандмауэра..."
+
+	# Удаление старых правил
+	ufw delete 1
+	ufw delete 1
+
+	# Добавление новых правил
+	ufw allow OpenSSH
+	ufw allow 51820/udp
+	ufw --force enable
 }
 
 function startWireGuard() {
 	# Запуск службы WireGuard
-	echo ""
-	echo -e "${ЗЕЛЕНЫЙ}Запуск службы WireGuard...${СБРОС}"
+	echo -e "Запуск службы ${GREEN}WireGuard${NC}..."
 
-	# Запуск службы
 	systemctl start wg-quick@wg0
-
-	# Активация автозапуска при загрузке системы
 	systemctl enable wg-quick@wg0
-
-	# Проверка статуса службы
-	if systemctl is-active --quiet wg-quick@wg0; then
-		echo ""
-		echo -e "${ЗЕЛЕНЫЙ}WireGuard успешно запущен.${СБРОС}"
-	else
-		echo ""
-		echo -e "${КРАСНЫЙ}Не удалось запустить WireGuard.${СБРОС}"
-	fi
 }
 
-# Установка WireGuard
-installWireGuard
+function main() {
+	checkRoot
+	checkOS
+	checkWireGuard
+	installWireGuard
+	setVariables
+	setSysctl
+	installUFW
+	generateKeys
+	generateServerConfig
+	addClient
+	showClientConfig
+	createQRCode
+	updateFirewallRules
+	startWireGuard
 
-# Конфигурирование правил iptables
-configureFirewall
+	echo -e "${GREEN}WireGuard установлен и настроен успешно!${NC}"
+}
 
-# Генерация конфигурации для клиента
-generateClientConfig
-
-# Запуск WireGuard
-startWireGuard
-
+main
 
