@@ -19,15 +19,15 @@
 		case $ans in
 
 			1)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/sm.sh
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/sm.sh)
 			;;
 
 			2)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/dante_proxy.sh
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/dante_proxy.sh)
 			;;
 
 			3)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/ports.sh
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/ports.sh)
 			;;
 
 			4)
