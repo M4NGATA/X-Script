@@ -10,8 +10,8 @@ mainmenu() {
 	echo "$(printBGreen ' 2 ')Закрыть порт"
 	echo "$(printBGreen ' 3 ')Проверить статус портов"
 	echo ' --------'
-	echo "$(printBBlue ' 4 ')Назад"
-	echo "$(printBRed ' 0 ')Выход"
+	echo "$(printBBlue '  0 ')Назад"
+	echo "$(printBRed ' 10 ')Выход"
 	echo ' --------'
 	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
 #	Свойства меню
@@ -39,14 +39,16 @@ mainmenu() {
 		mainmenu
 		;;
 
-		4)
+		0)
 		back
 		;;
 
+		10)
+		echo $(printBCyan '"Bye bye."') && exit
+		;;
+
 		*)
-		clear && printlogo
-		echo "$(printBRed ' Неверный запрос!')"
-		mainmenu
+		clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 		;;
 
 		esac

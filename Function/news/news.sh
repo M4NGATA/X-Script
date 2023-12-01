@@ -1,11 +1,8 @@
 #!/bin/bash
-
 # Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-
 # Шапка скрипта
 	echo "$(printBMagenta ' ОБНОВЛЕНИЯ    ')"
-
 #-----------------------------Лента новостей-----------------------------------------#
 	echo " $(printBMagenta '=')""$(printBYellow '| 25.10.2023 |') Добавлена установка ноды Fleek"
 	echo " $(printBMagenta '=')""$(printBYellow '| 12.10.2023 |') Holograph добавлен смартконтракт"
@@ -34,12 +31,11 @@
 			case $ans in
 
 			0)
-
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/start.sh)
 			;;
 
 			10)
-			echo $(printBCyan '"Bye bye."')
-			exit
+			echo $(printBCyan '"Bye bye."') && exit
 			;;
 
 			*)
