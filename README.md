@@ -1,4 +1,4 @@
 # X-Script
 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-Powered by X-libra community
+Powered Citadel by X-libra community ;)
 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_

@@ -18,7 +18,7 @@
 		case $ans in
 
 			1)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/news.sh)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/news/news.sh)
 			;;
 
 			2)
