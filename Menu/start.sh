@@ -11,7 +11,7 @@
 		echo "$(printBGreen ' 3 ')Смартконтракты"
 		echo "$(printBGreen ' 4 ')Сервер"
 		echo ' --------'
-		echo "$(printBRed ' 0 ')Выход"
+		echo "$(printBRed ' 10 ')Выход"
 		echo ' --------'
 		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
 #	Свойства меню
@@ -19,35 +19,30 @@
 		case $ans in
 
 			1)
-			install
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/news.sh)
 			;;
 
 			2)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/menunodes.sh)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/menu_nodes.sh)
 			;;
 
 			3)
-			help
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/menu_smart.sh)
 			;;
 
 			4)
-			server
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/server.sh)
 			;;
-
-			5)
-			back
+			
+			10)
+			exit
 			;;
-
+			
 			*)
-			clear && printlogo
-			echo "$(printBRed ' Неверный запрос!')"
-			mainmenu
+			clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 			;;
 
 	esac
 }
-
-# функции
-
 
 mainmenu

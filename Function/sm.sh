@@ -15,5 +15,4 @@ fi
 echo "Запуск btop..."
 snap run btop
 
-source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/menu/homemenu.sh)
-source <(curl -s https://raw.githubusercontent.com/M4NGATA/C-Script/main/
+source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/server.sh)

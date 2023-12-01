@@ -12,8 +12,8 @@
 		echo "$(printBYellow ' 3 ')Помощь"
 		echo "$(printBRed ' 4 ')Удалить"
 		echo ' --------'
-		echo "$(printBBlue ' 5 ')Назад"
-		echo "$(printBRed ' 0 ')Выход"
+		echo "$(printBBlue ' 0 ')Назад"
+		echo "$(printBRed ' 10 ')Выход"
 		echo ' --------'
 		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
 #	Свойства меню
@@ -36,29 +36,23 @@
 			delet
 			;;
 
-			5)
-			back
+			0)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/server.sh)
 			;;
 
-			0)
+			10)
 			echo $(printBCyan '"Bye bye."')
 			exit
 			;;
 
 			*)
-			clear && printlogo
-			echo "$(printBRed ' Неверный запрос!')"
-			mainmenu
+			clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 			;;
 
 	esac
 }
 
 # функции
-	back(){
-		./x-l1bra
-		}
-
 	delet(){
 		systemctl stop danted.service
 		sudo rm /etc/danted.conf

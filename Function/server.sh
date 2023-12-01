@@ -7,12 +7,12 @@
 # Основное меню
 	mainmenu() {
 		echo "$(printBGreen ' 1 ')Системный монитор"
-		echo "$(printBGreen ' 2 ')Прокси"
+		echo "$(printBGreen ' 2 ')Настройка прокси"
 		echo "$(printBGreen ' 3 ')Настройка портов"
 		echo "$(printBGreen ' 4 ')VPN"
 		echo ' --------'
-		echo "$(printBRed ' 9 ')Назад"
-		echo "$(printBRed ' 0 ')Выход"
+		echo "$(printBRed ' 0 ')Назад"
+		echo "$(printBRed ' 10 ')Выход"
 		echo ' --------'
 		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
 #	Свойства меню
@@ -20,35 +20,35 @@
 		case $ans in
 
 			1)
-			install
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/sm.sh
 			;;
 
 			2)
-			status
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/dante_proxy.sh
 			;;
 
 			3)
-			help
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/ports.sh
 			;;
 
 			4)
-			server
+			clear && printlogo && echo "$(printBYellow ' Coming soon!')" && mainmenu
 			;;
 
-			9 )
-			back
+			0)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/start.sh)
 			;;
-
+			
+			10)
+			exit
+			;;
+			
 			*)
-			clear && printlogo
-			echo "$(printBRed ' Неверный запрос!')"
-			mainmenu
+			clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 			;;
 
 	esac
 }
-
-# функции
 
 
 mainmenu
