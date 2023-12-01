@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 # Шапка скрипта
@@ -40,16 +39,13 @@
 			;;
 			
 			10)
-			echo $(printBCyan '"Bye bye."')
-			exit
+			echo $(printBCyan '"Bye bye."') && exit
 			;;
 			
 			*)
 			clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 			;;
-
 	esac
 }
-
 
 mainmenu

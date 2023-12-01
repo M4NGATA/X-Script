@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 # Шапка скрипта
@@ -42,7 +41,6 @@
 			*)
 			clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 			;;
-
 	esac
 }
 
