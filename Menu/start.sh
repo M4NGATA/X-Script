@@ -35,6 +35,7 @@
 			;;
 			
 			10)
+			echo $(printBCyan '"Bye bye."')
 			exit
 			;;
 			
