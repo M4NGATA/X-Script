@@ -5,17 +5,14 @@
 	echo "$(printBMagenta ' НОДЫ')"
 # Основное меню
 	mainmenu() {
-		echo "$(printBGreen ' 1 ')Nibiru"
-		echo "$(printBGreen ' 2 ')Shardeum"
-		echo "$(printBGreen ' 3 ')Starknet"
-		echo "$(printBGreen ' 4 ')5ireChain"
-		echo "$(printBGreen ' 5 ')Elixir"
-		echo "$(printBGreen ' 6 ')Holograph"
+		echo "$(printBGreen ' 1 ')Shardeum"
+		echo "$(printBGreen ' 2 ')Elixir"
+		echo "$(printBGreen ' 3 ')Holograph"
 		echo ' ---------'
-		echo "$(printBGreen ' 7)') $(printBYellow 'Архив')"
+		echo "$(printBYellow ' 9)') $(printBYellow 'Архив')"
 		echo ' ---------'
-		echo "$(printBBlue ' 0)') $(printBYellow 'Назад')"
-		echo "$(printBRed ' 10) Выход')"
+		echo "$(printBBlue '  0 ')Назад"
+		echo "$(printBRed ' 10 ')Выход"
 		echo ' ---------'
 		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
 #	Свойства меню
@@ -31,10 +28,6 @@
 
 			3)
 			source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/starknet/main.sh)
-			;;
-
-			4)
-			clear && printlogo && printComing && mainmenu
 			;;
 
 			5)
