@@ -30,6 +30,10 @@
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Holograph/main.sh)
 			;;
 
+			9)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/archive_nodes.sh)
+			;;
+
 			0)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/start.sh)
 			;;
