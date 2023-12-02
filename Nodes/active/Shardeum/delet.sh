@@ -23,26 +23,18 @@ mainmenu() {
 		;;
 
 		*)
-		clear
-		printlogo
-		printshardium
-		echo
-		echo
-		echo    -ne "$(printRed '		   Неверный запрос !')"
-		echo
-		mainmenu
+		clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 		;;
 	esac
 }
 
 no(){
-source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/shardeum/main.sh)
+source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Shardeum/main.sh)
 }
 
 yes(){
 clear
 printlogo
-printshardium
 echo -ne "
 
 $(printBYellow 'Удаляем.....!')"
@@ -62,7 +54,7 @@ submenu(){
 	read -r ans
 	case $ans in
 		*)
-		source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/shardeum/main.sh)
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Shardeum/main.sh)
 		;;
 	esac
 }

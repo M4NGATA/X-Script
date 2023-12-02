@@ -4,7 +4,7 @@
 # Шапка скрипта
 	echo "$(printBMagenta ' SHARDEUM')"
 # Основное меню
-mainmenu() { echo -ne "
+mainmenu() { 
 		echo "$(printBGreen ' 1 ')Управление"
 		echo "$(printBGreen ' 2 ')Установить"
 		echo "$(printBGreen ' 3 ')Обновить Validator"
@@ -38,44 +38,32 @@ read -r ans
 		delet
 		;;
 
-		6)
-		back
+		0)
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/menu_nodes.sh)
 		;;
 
-		0)
-		echo $(printBCyan '"Bye bye."')
-		rm x-l1bra
-		exit
+		10)
+		echo $(printBCyan '"Bye bye."') && exit
 		;;
 
 		*)
-		clear
-		printlogo
-		printshardium
-		echo
-		echo
-		echo    -ne "$(printRed '		   Неверный запрос !')"
-		echo
-		mainmenu
+		clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 		;;
 	esac
 }
 
 install(){
- source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/shardeum/install.sh)
+ source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Shardeum/install.sh)
 }
 
 control(){
-	source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/shardeum/control.sh)
+	source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Shardeum/control.sh)
 }
 
 delet(){
-source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/shardeum/delet.sh)
+source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Shardeum/delet.sh)
 }
 
-back(){
-source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/menu/menunodes.sh)
-}
 
 updatecli(){
 	docker exec -i shardeum-dashboard /bin/bash -c "operator-cli stop"
@@ -86,7 +74,7 @@ updatecli(){
 
 #--------------ОБНОВЛЕНИЕ 1.1.6
 update(){
-	clear && source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/function/common.sh) && printlogo && printshardium
+	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 	cd $HOME
 	docker exec -i shardeum-dashboard /bin/bash -c "operator-cli stop"
 	curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh && ./installer.sh
