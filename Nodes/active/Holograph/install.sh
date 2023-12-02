@@ -2,23 +2,20 @@
 # Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 # Шапка скрипта
-	echo "$(printBYellow ' HOLOGRAPH')"
-# Основное меню
-echo -ne "
-	$(printGreen  '-----------------------------------------')
-	  $(printYellow 'Минимальные требования к оборудованию.')
-		     $(printBCyan '4CPU 4RAM 40GB')
-	$(printGreen  '-----------------------------------------')
-	$(printYellow 'Рекомендуемые требования к оборудованию.')
-		     $(printBCyan '8CPU 4RAM 200GB')
-	$(printGreen  '-----------------------------------------')"
-echo
+
 mainmenu() {
-	echo -ne "
-	$(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')
-	$(printGreen	' 1) Да')
-	$(printRed	' 2) Нет')
-	$(printCyan	'Введите цифру:') "
+		echo "$(printBYellow ' HOLOGRAPH')"
+	echo "$(printGreen  '-----------------------------------------')"
+	echo "$(printYellow 'Минимальные требования к оборудованию.')"
+	echo "$(printBCyan '	  4CPU 4RAM 40GB')"
+	echo "$(printGreen  '-----------------------------------------')"
+	echo "$(printYellow 'Рекомендуемые требования к оборудованию.')"
+	echo "$(printBCyan '	  8CPU 4RAM 200GB')"
+	echo "$(printGreen  '-----------------------------------------')"
+	echo "$(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')"
+	echo "$(printGreen	' 1) Да')"
+	echo "$(printRed	' 2) Нет')"
+	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
 	read -r ans
 	case $ans in
 		1)
@@ -28,12 +25,8 @@ mainmenu() {
 		no
 		;;
 		*)
-		clear && printlogo
-		echo
-		echo    -ne "$(printRed '		   Неверный запрос !')"
-		echo
-		mainmenu
-        	;;
+		clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
+        ;;
     esac
 }
 

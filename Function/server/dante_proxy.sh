@@ -12,7 +12,7 @@
 		echo "$(printBYellow ' 3 ')Помощь"
 		echo "$(printBRed ' 4 ')Удалить"
 		echo ' --------'
-		echo "$(printBBlue ' 0 ')Назад"
+		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
 		echo ' --------'
 		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"

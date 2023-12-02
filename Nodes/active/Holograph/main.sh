@@ -8,12 +8,9 @@
 mainmenu() { 
 
 		echo "$(printBGreen ' 1 ')Faucet"
-
 		echo "$(printBGreen ' 2 ')Start operator"
 		echo "$(printBGreen ' 3 ')Bonding"
-		
 		echo "$(printBGreen ' 4 ')Управление"
-
 		echo "$(printBGreen ' 5 ')Установить ноду"
 		echo "$(printBGreen ' 6 ')Удалить ноду"
 		echo ' ---------'

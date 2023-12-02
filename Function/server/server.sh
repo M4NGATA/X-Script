@@ -10,7 +10,7 @@
 		echo "$(printBGreen ' 3 ')Настройка портов"
 		echo "$(printBGreen ' 4 ')VPN"
 		echo ' --------'
-		echo "$(printBRed ' 0 ')Назад"
+		echo "$(printBRed '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
 		echo ' --------'
 		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
