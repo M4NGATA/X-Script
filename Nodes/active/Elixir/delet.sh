@@ -2,12 +2,12 @@
 # Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 # Шапка скрипта
-	echo "$(printBYellow ' HOLOGRAPH')"
+	echo "$(printBMagenta ' ELIXIR')"
 # Основное меню
 mainmenu() {
     echo -ne "
     
-	  $(printBRed    'Вы действительно хотите удалить Holograph ') $(printBRedBlink '!!!')
+	  $(printBRed    'Вы действительно хотите удалить Elixir ') $(printBRedBlink '!!!')
 	  
 		$(printRed   '1) Да')
 		$(printGreen '2) Нет')
@@ -23,35 +23,43 @@ mainmenu() {
 		;;
 
 		*)
-		clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
+		clear
+		printlogo
+		echo
+		echo
+		echo    -ne "$(printRed '		   Неверный запрос !')"
+		echo
+		mainmenu
 		;;
 	esac
 }
 
 no(){
-source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/Holograph/main.sh)
+source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/main.sh)
 }
 
 yes(){
 clear
 printlogo
+printelixir
 echo -ne "	
 
 $(printBYellow 'Удаляем.....!')"
-
-rm -rf .config	
+cd $HOME
+docker kill ev
+docker rm ev
 submenu
 }
 
 submenu(){
 	echo -ne "
-	$(printBGreen    'Holograph удален с вашего сервера ')$(printBGreenBlink '!!!')
+	$(printBGreen    'Elixir полностью удален с вашего сервера ')$(printBGreenBlink '!!!')
 	
 	Нажмите Enter:  "
 	read -r ans
 	case $ans in
 		*)
-		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/Holograph/main.sh)
+		source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/main.sh)
 		;;
 	esac
 }

@@ -100,7 +100,6 @@ autostart() {
   curl -sS -o autostart_shardeum.sh https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Shardeum/autostart_shardeum.sh && chmod +x autostart_shardeum.sh
   screen -dmS autostart_shardeum bash autostart_shardeum.sh
   printlogo
-  printshardium
   echo
   echo "    Автостарт валидатора запущен в screen!"
   echo
@@ -108,7 +107,7 @@ autostart() {
 }
 
 stake(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo
 	read -r -p "
 $(printCyan 'Введите количество монет SHM :')  " VAR2
@@ -119,7 +118,7 @@ $(printCyan 'Введите количество монет SHM :')  " VAR2
 }
 
 unstake(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo
 	read -r -p "
 $(printBYellow 'Вы можете вывести все монеты со стейка просто нажав Enter или
@@ -130,7 +129,7 @@ $(printBYellow 'Вы можете вывести все монеты со сте
 	mainmenu
 }
 stakeinfo(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo
 	docker exec -i shardeum-dashboard /bin/bash -c "operator-cli stake_info "$METAMASK""
 	echo
@@ -138,7 +137,7 @@ stakeinfo(){
 }
 
 status(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo
 	docker exec -i shardeum-dashboard /bin/bash -c "operator-cli status"
 	echo
@@ -146,7 +145,7 @@ status(){
 }
 
 pm2(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo
 	docker exec -i shardeum-dashboard /bin/bash -c "pm2 ls"
 	echo
@@ -154,7 +153,7 @@ pm2(){
 }
 
 version(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo
 	docker exec -i shardeum-dashboard /bin/bash -c "operator-cli version"
 	echo
@@ -162,7 +161,7 @@ version(){
 }
 
 privkey(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo -ne "
 $(printCyan 'Вставте приватный ключ Metamask') "
 	read -r PRIV_KEY
@@ -172,7 +171,7 @@ $(printCyan 'Вставте приватный ключ Metamask') "
 }
 
 metamask(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo -ne "
 $(printCyan 'Вставте адрес Metamask') "
 	read -r METAMASK
@@ -182,7 +181,7 @@ $(printCyan 'Вставте адрес Metamask') "
 }
 
 guistart(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo
 	docker exec -i shardeum-dashboard /bin/bash -c "operator-cli gui start"
 	echo
@@ -190,7 +189,7 @@ guistart(){
 }
 
 clistart(){
-	clear && printlogo && printshardium
+	clear && printlogo
 	echo
 	docker exec -i shardeum-dashboard /bin/bash -c "operator-cli start"
 	echo
