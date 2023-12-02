@@ -5,7 +5,7 @@
 
 # Основное меню
     mainmenu(){
-		echo "$(printBMagenta ' АРХИВ НОД')"
+		echo "$(printBYellow ' АРХИВ НОД')"
         echo "$(printBGreen ' 1 ')Nibiru"
         echo "$(printBGreen ' 2 ')Starknet"
         echo "$(printBGreen ' 3 ')Fleek"
@@ -14,10 +14,10 @@
         echo "$(printBGreen ' 6 ')SUI"
 		echo "$(printBGreen ' 7 ')DeFund"
 		echo ' --------'
-		echo "$(printBRed '  0 ')Назад"
+		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
 		echo ' --------'
-		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 	read -r ans
 		case $ans in
             1)

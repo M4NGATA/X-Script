@@ -1,10 +1,7 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-
 mainmenu() {
-		echo "$(printBYellow ' HOLOGRAPH')"
+	echo "$(printBBlue ' HOLOGRAPH')"
 	echo "$(printGreen  '-----------------------------------------')"
 	echo "$(printYellow 'Минимальные требования к оборудованию.')"
 	echo "$(printBCyan '	  4CPU 4RAM 40GB')"
@@ -15,7 +12,7 @@ mainmenu() {
 	echo "$(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')"
 	echo "$(printGreen	' 1) Да')"
 	echo "$(printRed	' 2) Нет')"
-	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 	read -r ans
 	case $ans in
 		1)
@@ -71,7 +68,7 @@ subnmenu() {
 	case $ans in
 		*)
 		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/Holograph/main.sh)
-       		;;
+       	;;
     esac
 }
 

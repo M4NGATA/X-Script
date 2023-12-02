@@ -1,11 +1,7 @@
 #!/bin/bash
-
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-	echo "$(printBMagenta 'НАСТРОЙКА ПОРТОВ')"
-# Основное меню
 mainmenu() {
+	echo "$(printBRed 'НАСТРОЙКА ПОРТОВ')"
 	echo "$(printBGreen ' 1 ')Открыть порт"
 	echo "$(printBGreen ' 2 ')Закрыть порт"
 	echo "$(printBGreen ' 3 ')Проверить статус портов"
@@ -13,7 +9,7 @@ mainmenu() {
 	echo "$(printBBlue '  0 ')Назад"
 	echo "$(printBRed ' 10 ')Выход"
 	echo ' --------'
-	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 #	Свойства меню
 	read -r ans
 		case $ans in
@@ -40,7 +36,7 @@ mainmenu() {
 		;;
 
 		0)
-		back
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/server.sh)
 		;;
 
 		10)

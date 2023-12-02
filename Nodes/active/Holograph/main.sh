@@ -1,12 +1,7 @@
 #!/bin/bash
-
-#Script written by DZHAGERR for X-libra
-
-#-----------------------------Подгрузка общих функций и цвета-----------------------------#
-	clear && source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/function/common.sh) && printlogo && printholograph
-#-----------------------------------------------------------------------------------------#
-mainmenu() { 
-
+	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
+mainmenu() {
+		echo "$(printBBlue ' HOLOGRAPH')"
 		echo "$(printBGreen ' 1 ')Faucet"
 		echo "$(printBGreen ' 2 ')Start operator"
 		echo "$(printBGreen ' 3 ')Bonding"
@@ -17,7 +12,7 @@ mainmenu() {
 		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
 		echo ' ---------'
-		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 #	Свойства меню
 read -r ans
 	case $ans in

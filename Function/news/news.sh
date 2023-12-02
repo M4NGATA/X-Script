@@ -1,9 +1,9 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
+mainmenu() {
 	echo "$(printBMagenta ' ОБНОВЛЕНИЯ    ')"
-#-----------------------------Лента новостей-----------------------------------------#
+	echo " $(printBMagenta '=')""$(printBYellow '| 04.12.2023 |') Добавлена установка ноды Zora"
+	echo " $(printBMagenta '=')""$(printBYellow '| 30.11.2023 |') Обновлен внешний вид скрипт"
 	echo " $(printBMagenta '=')""$(printBYellow '| 25.10.2023 |') Добавлена установка ноды Fleek"
 	echo " $(printBMagenta '=')""$(printBYellow '| 12.10.2023 |') Holograph добавлен смартконтракт"
 	echo " $(printBMagenta '=')""$(printBYellow '| 05.10.2023 |') Holograph добавлен функционал в меню"
@@ -25,7 +25,7 @@
 	echo "$(printBBlue '  0 ')Назад"
 	echo "$(printBRed ' 10 ')Выход"
 	echo ' --------'
-	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 	#-------------------------Свойства меню-------------------------#
 		read -r ans
 			case $ans in

@@ -1,7 +1,5 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Основное меню
     mainmenu() {
 		echo "$(printBMagenta ' ELIXIR')"
 		echo "$(printGreen  '-----------------------------------------')"
@@ -11,7 +9,7 @@
 	    echo "$(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')"
 	    echo "$(printGreen	' 1) Да')"
 	    echo "$(printRed	' 2) Нет')"
-		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 	        read -r ans
 	            case $ans in
 		        1)

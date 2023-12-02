@@ -1,5 +1,4 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 mainmenu() { 
 		echo "$(printBMagenta ' ELIXIR')"
@@ -11,7 +10,7 @@ mainmenu() {
 		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
 		echo ' ---------'
-		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 #	Свойства меню
 read -r ans
 	case $ans in

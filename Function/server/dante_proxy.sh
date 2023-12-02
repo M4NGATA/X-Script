@@ -1,16 +1,16 @@
 #!/bin/bash
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 	mainmenu() {
-		echo "$(printBMagenta ' ПРОКСИ    ')"
+		echo "$(printBYellow ' ПРОКСИ    ')"
 		echo "$(printBGreen ' 1 ')Настроить"
-		echo "$(printBYellow ' 2 ')Просмотреть статус"
-		echo "$(printBYellow ' 3 ')Помощь"
+		echo "$(printBGreen ' 2 ')Просмотреть статус"
+		echo "$(printBGreen ' 3 ')Помощь"
 		echo "$(printBRed ' 4 ')Удалить"
 		echo ' --------'
 		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
 		echo ' --------'
-		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 #	Свойства меню
 	read -r ans
 		case $ans in

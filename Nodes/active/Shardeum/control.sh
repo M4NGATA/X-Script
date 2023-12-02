@@ -1,10 +1,7 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-	echo "$(printBMagenta ' SHARDEUM')"
-# Основное меню
 mainmenu() {
+	echo "$(printBCyan ' SHARDEUM')"
 	echo "$(printBGreen 'CLI')"
 	echo "$(printBGreen ' 1 ')Stake"
 	echo "$(printBGreen ' 2 ')Unstake"
@@ -24,7 +21,7 @@ mainmenu() {
 	echo "$(printBBlue '  0 ')Назад"
 	echo "$(printBRed ' 10 ')Выход"
 	echo ' --------'
-	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+	echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 #	Свойства меню
 	read -r ans
 	case $ans in

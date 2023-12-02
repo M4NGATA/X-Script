@@ -1,10 +1,7 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-	echo "$(printBMagenta ' ОСНОВНОЕ МЕНЮ')"
-# Основное меню
 	mainmenu() {
+		echo "$(printBMagenta ' ОСНОВНОЕ МЕНЮ')"
 		echo "$(printBGreen ' 1 ')Новости"
 		echo "$(printBGreen ' 2 ')Ноды"
 		echo "$(printBGreen ' 3 ')Смартконтракты"
@@ -12,7 +9,7 @@
 		echo ' --------'
 		echo "$(printBRed ' 10 ')Выход"
 		echo ' --------'
-		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 #	Свойства меню
 	read -r ans
 		case $ans in
@@ -34,8 +31,7 @@
 			;;
 			
 			10)
-			echo $(printBCyan '"Bye bye."')
-			exit
+			echo $(printBCyan '"Bye bye."') && exit
 			;;
 			
 			*)

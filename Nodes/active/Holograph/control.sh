@@ -1,10 +1,7 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-	echo "$(printBYellow ' HOLOGRAPH')"
-# Основное меню
 mainmenu() {	
+		echo "$(printBBlue ' HOLOGRAPH')"
 		echo "$(printBGreen ' 1 ')Просмотр текущей конфигурации сети."
 		echo "$(printBGreen ' 2 ')Просмотр текущей информации о пользователе."
 		echo "$(printBGreen ' 3 ')Просмотр конфигурации Holograph CLI."

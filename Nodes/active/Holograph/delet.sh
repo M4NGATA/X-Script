@@ -1,18 +1,13 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-	echo "$(printBYellow ' HOLOGRAPH')"
-# Основное меню
 mainmenu() {
-    echo -ne "
-    
-	  $(printBRed    'Вы действительно хотите удалить Holograph ') $(printBRedBlink '!!!')
+	echo "$(printBBlue ' HOLOGRAPH')"
+	echo "$(printBRed    'Вы действительно хотите удалить Holograph ') $(printBRedBlink '!!!')"
 	  
-		$(printRed   '1) Да')
-		$(printGreen '2) Нет')
+	echo "$(printRed   '1) Да')"
+	echo "$(printGreen '2) Нет')"
 		
-	  $(printBCyan 'Введите цифру:') "
+	  echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
 	read -r ans
 	case $ans in
 		1)

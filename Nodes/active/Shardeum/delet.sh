@@ -1,10 +1,7 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-	echo "$(printBMagenta ' SHARDEUM')"
-# Основное меню
 mainmenu() {
+	echo "$(printBCyan ' SHARDEUM')"
     echo -ne "
 
 	  $(printBRed    'Вы действительно хотите удалить Shardeum ') $(printBRedBlink '!!!')

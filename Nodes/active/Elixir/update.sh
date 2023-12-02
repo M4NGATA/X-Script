@@ -13,7 +13,7 @@ docker run -d --restart unless-stopped --name ev elixir-validator
 mainmenu(){
 	echo -ne "
     $(printBCyan '	Обновление завершено!')  
-	$(printBCyan '	Для возврата нажмите Enter:')  "
+	$(printBCyan '	Для возврата нажмите Enter: ')  "
 		read -r ans
 			case $ans in
 				*)
