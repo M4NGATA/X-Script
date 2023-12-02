@@ -1,12 +1,7 @@
 #!/bin/bash
-
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-
-# Шапка скрипта
-	echo "$(printBMagenta ' ПРОКСИ    ')"
-# Основное меню
 	mainmenu() {
+		echo "$(printBMagenta ' ПРОКСИ    ')"
 		echo "$(printBGreen ' 1 ')Настроить"
 		echo "$(printBYellow ' 2 ')Просмотреть статус"
 		echo "$(printBYellow ' 3 ')Помощь"
@@ -41,8 +36,7 @@
 			;;
 
 			10)
-			echo $(printBCyan '"Bye bye."')
-			exit
+			echo $(printBCyan '"Bye bye."') && exit
 			;;
 
 			*)

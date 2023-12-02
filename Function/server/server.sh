@@ -1,10 +1,7 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-	echo "$(printBMagenta ' СЕРВЕР')"
-# Основное меню
 	mainmenu() {
+		echo "$(printBMagenta ' СЕРВЕР')"
 		echo "$(printBGreen ' 1 ')Системный монитор"
 		echo "$(printBGreen ' 2 ')Настройка прокси"
 		echo "$(printBGreen ' 3 ')Настройка портов"

@@ -1,9 +1,6 @@
 #!/bin/bash
 # Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-
-# Основное меню
 mainmenu() { 
 		echo "$(printBMagenta ' ELIXIR')"
 		echo "$(printBGreen ' 1 ')Установить"

@@ -1,8 +1,5 @@
 #!/bin/bash
-# Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-
 mainmenu() {
 	echo "$(printBMagenta ' SHARDEUM')"
 	echo "$(printGreen  '-----------------------------------------')"
