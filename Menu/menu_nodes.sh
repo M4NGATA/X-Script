@@ -5,9 +5,10 @@
 	echo "$(printBMagenta ' НОДЫ')"
 # Основное меню
 	mainmenu() {
-		echo "$(printBGreen ' 1 ')Shardeum"
-		echo "$(printBGreen ' 2 ')Elixir"
-		echo "$(printBGreen ' 3 ')Holograph"
+		echo "$(printBGreen ' 1 ')Zora"
+		echo "$(printBGreen ' 2 ')Shardeum"
+		echo "$(printBGreen ' 3 ')Elixir"
+		echo "$(printBGreen ' 4 ')Holograph"
 		echo ' ---------'
 		echo "$(printBYellow ' 9)') $(printBYellow 'Архив')"
 		echo ' ---------'
@@ -19,14 +20,18 @@
 			read -r ans
 				case $ans in
 			1)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Zora/main.sh)
+			;;
+			
+			2)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Shardeum/main.sh)
 			;;
 
-			2)
+			3)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/main.sh)
 			;;
 
-			3)
+			4)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Holograph/main.sh)
 			;;
 
