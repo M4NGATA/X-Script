@@ -3,9 +3,10 @@
 	mainmenu() {
 		echo "$(printBGreen ' СЕРВЕР')"
 		echo "$(printBGreen ' 1 ')Системный монитор"
-		echo "$(printBGreen ' 2 ')Настройка прокси"
-		echo "$(printBGreen ' 3 ')Настройка портов"
-		echo "$(printBGreen ' 4 ')VPN"
+		echo "$(printBGreen ' 2 ')Базовая настройка сервера"
+		echo "$(printBGreen ' 3 ')Настройка прокси"
+		echo "$(printBGreen ' 4 ')Настройка портов"
+		echo "$(printBGreen ' 5 ')VPN"
 		echo ' --------'
 		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
@@ -16,18 +17,22 @@
 		case $ans in
 
 			1)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/sm.sh)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/base_setting.sh)
 			;;
 
 			2)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/dante_proxy.sh)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/sm.sh)
 			;;
 
 			3)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/ports.sh)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/dante_proxy.sh)
 			;;
 
 			4)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/ports.sh)
+			;;
+
+			5)
 			clear && printlogo && echo "$(printBYellow ' Coming soon!')" && mainmenu
 			;;
 
