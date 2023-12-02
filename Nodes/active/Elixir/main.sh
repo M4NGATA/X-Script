@@ -2,19 +2,20 @@
 # Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 # Шапка скрипта
-	echo "$(printBMagenta ' ELIXIR')"
+
 # Основное меню
-mainmenu() { echo -ne "
-		$(printBCyan ' -->') $(printBGreen    '1) Установить')
-		$(printBCyan ' -->') $(printBYellow    '2) Обновить')
-		$(printBCyan ' -->') $(printBGreen    '3) Просмотр логов')
-		$(printBCyan ' -->') $(printBRed    '4) Удалить')
-
-		$(printBBlue ' <-- 5) Назад')
-		$(printBRed        '     0) Выход')
-
-	$(printCyan 'Введите цифру:')  "
-
+mainmenu() { 
+		echo "$(printBMagenta ' ELIXIR')"
+		echo "$(printBGreen ' 1 ')Установить"
+		echo "$(printBGreen ' 2 ')Обновить"
+		echo "$(printBGreen ' 3 ')Просмотр логов"
+		echo "$(printBGreen ' 4 ')Удалить"
+		echo ' ---------'
+		echo "$(printBBlue '  0 ')Назад"
+		echo "$(printBRed ' 10 ')Выход"
+		echo ' ---------'
+		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
+#	Свойства меню
 read -r ans
 	case $ans in
 		1)
@@ -29,29 +30,20 @@ read -r ans
 		4)
 		delet
 		;;
-		5)
-		back
-		;;
 		0)
-		echo $(printBCyan '	"Bye bye."')
-		rm x-l1bra
-		exit
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/menu_nodes.sh)
+		;;
+		10)
+		echo $(printBCyan '	"Bye bye."') && exit
 		;;
 		*)
-		clear
-		printlogo
-		printelixir
-		echo
-		echo
-		echo    -ne "$(printRed '		   Неверный запрос !')"
-		echo
-		mainmenu
+		clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 		;;
 	esac
 }
 
 install(){
-source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/install.sh)
+source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/install.sh)
 }
 
 # control(){
@@ -64,15 +56,11 @@ logs(){
 }
 
 update(){
-source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/update.sh)
+source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/update.sh)
 }
 
 delet(){
-source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/delet.sh)
-}
-
-back(){
-source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/menu/menunodes.sh)
+source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/delet.sh)
 }
 
 mainmenu

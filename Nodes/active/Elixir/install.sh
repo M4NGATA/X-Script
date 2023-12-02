@@ -1,22 +1,17 @@
 #!/bin/bash
 # Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
-# Шапка скрипта
-	echo "$(printBMagenta ' ELIXIR')"
 # Основное меню
-    echo -ne "
-	$(printGreen  '-----------------------------------------')
-	  $(printYellow 'Минимальные требования к оборудованию.')
-		     $(printBCyan '4CPU 8RAM 200GB')
-	$(printGreen  '-----------------------------------------')"
-    echo
-###############           МЕНЮ
     mainmenu() {
-	    echo -ne "
-	    $(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')
-	    $(printGreen	' 1) Да')
-	    $(printRed	' 2) Нет')
-	    $(printCyan	'Введите цифру:') "
+		echo "$(printBMagenta ' ELIXIR')"
+		echo "$(printGreen  '-----------------------------------------')"
+		echo "$(printYellow 'Минимальные требования к оборудованию.')"
+		echo "$(printBCyan '	4CPU 8RAM 200GB')"
+		echo "$(printGreen  '-----------------------------------------')"
+	    echo "$(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')"
+	    echo "$(printGreen	' 1) Да')"
+	    echo "$(printRed	' 2) Нет')"
+		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
 	        read -r ans
 	            case $ans in
 		        1)
@@ -26,21 +21,17 @@
 		        no
 		        ;;
 		        *)
-		        clear && printlogo && printshardium
-		        echo && echo 
-		        echo    -ne "$(printRed '		   Неверный запрос !')"
-		        echo
-		        mainmenu
+		        clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
         	    ;;
                  esac
     }
 ###############     ВОЗВРАТ В МЕНЮ
     no(){
-    source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/main.sh)
+    source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/main.sh)
     }
 ###############     ПРОЦЕС УСТАНОВКИ
     yes(){
-    clear && printlogo && printelixir && echo
+    clear && printlogo && echo
 
     printBCyan "Пожалуйста подождите........" && sleep 1
     printYellow "1. Обновление менеджеров пакетов........" && sleep 1
@@ -91,7 +82,7 @@ echo -ne "
 	read -r ans
 	case $ans in
 	    *)
-		source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/main.sh)
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/main.sh)
 		;;
 	esac
 }

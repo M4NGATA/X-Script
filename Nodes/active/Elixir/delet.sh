@@ -2,17 +2,17 @@
 # Подгрузка общих функций и цвета
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 # Шапка скрипта
-	echo "$(printBMagenta ' ELIXIR')"
+
 # Основное меню
 mainmenu() {
-    echo -ne "
+	echo "$(printBMagenta ' ELIXIR')"
     
-	  $(printBRed    'Вы действительно хотите удалить Elixir ') $(printBRedBlink '!!!')
+    echo "$(printBYellow 'Вы действительно хотите удалить Elixir') $(printBRedBlink '!!!')"
 	  
-		$(printRed   '1) Да')
-		$(printGreen '2) Нет')
+	echo "$(printBRed '1) Да')"
+	echo "$(printBGreen '2) Нет')"
 		
-	  $(printBCyan 'Введите цифру:') "
+		echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ':')"
 	read -r ans
 	case $ans in
 		1)
@@ -23,25 +23,18 @@ mainmenu() {
 		;;
 
 		*)
-		clear
-		printlogo
-		echo
-		echo
-		echo    -ne "$(printRed '		   Неверный запрос !')"
-		echo
-		mainmenu
+		clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 		;;
 	esac
 }
 
 no(){
-source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/main.sh)
+source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/main.sh)
 }
 
 yes(){
 clear
 printlogo
-printelixir
 echo -ne "	
 
 $(printBYellow 'Удаляем.....!')"
@@ -59,10 +52,9 @@ submenu(){
 	read -r ans
 	case $ans in
 		*)
-		source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/main.sh)
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/main.sh)
 		;;
 	esac
 }
-
 
 mainmenu

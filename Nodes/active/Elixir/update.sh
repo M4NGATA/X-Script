@@ -10,9 +10,6 @@ docker pull elixirprotocol/validator:testnet-2
 docker build . -f Dockerfile -t elixir-validator
 docker run -d --restart unless-stopped --name ev elixir-validator
 
-
-
-
 mainmenu(){
 	echo -ne "
     $(printBCyan '	Обновление завершено!')  
@@ -20,7 +17,7 @@ mainmenu(){
 		read -r ans
 			case $ans in
 				*)
-				source <(curl -s https://raw.githubusercontent.com/dzhagerr/xl1/main/xscript/nodes/active/elixir/main.sh)
+				source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/main.sh)
 				;;
 			esac
 }
