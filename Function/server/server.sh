@@ -6,7 +6,6 @@
 		echo "$(printBGreen ' 2 ')Базовая настройка сервера"
 		echo "$(printBGreen ' 3 ')Настройка прокси"
 		echo "$(printBGreen ' 4 ')Настройка портов"
-		echo "$(printBGreen ' 5 ')VPN"
 		echo ' --------'
 		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
@@ -17,11 +16,11 @@
 		case $ans in
 
 			1)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/base_setting.sh)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/sm.sh)
 			;;
 
 			2)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/sm.sh)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/base_setting.sh)
 			;;
 
 			3)
@@ -30,10 +29,6 @@
 
 			4)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/ports.sh)
-			;;
-
-			5)
-			clear && printlogo && echo "$(printBYellow ' Coming soon!')" && mainmenu
 			;;
 
 			0)
