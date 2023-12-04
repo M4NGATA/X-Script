@@ -2,12 +2,9 @@
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 mainmenu() {
 	echo "$(printBMagenta ' ОБНОВЛЕНИЯ    ')"
-	echo " $(printBMagenta '=')""$(printBYellow '| 04.12.2023 |') Добавлена установка ноды Zora"
-	echo " $(printBMagenta '=')""$(printBYellow '| 30.11.2023 |') Обновлен внешний вид скрипт"
 	echo " $(printBMagenta '=')""$(printBYellow '| 25.10.2023 |') Добавлена установка ноды Fleek"
 	echo " $(printBMagenta '=')""$(printBYellow '| 12.10.2023 |') Holograph добавлен смартконтракт"
 	echo " $(printBMagenta '=')""$(printBYellow '| 05.10.2023 |') Holograph добавлен функционал в меню"
-	echo " $(printBMagenta '=')""$(printBYellow '| 04.10.2023 |') Holograph исправлен баг в установке ноды "
 	echo " $(printBMagenta '=')""$(printBYellow '| 03.10.2023 |') Оыбновление NIBIRU  v0.21.11 "
 	echo " $(printBMagenta '=')""$(printBYellow '| 28.09.2023 |') Обновление STARKNET pathfinder v0.8.2. "
 	echo " $(printBMagenta '=')""$(printBYellow '| 20.09.2023 |') Обновление сети NIBIRU v0.21.9 "
