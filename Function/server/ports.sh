@@ -31,7 +31,7 @@ mainmenu() {
 		;;
 
 		3)
-		sudo ufw status numbered
+		clear && printlogo && echo && sudo ufw status numbered
 		mainmenu
 		;;
 
