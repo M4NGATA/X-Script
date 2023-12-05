@@ -2,9 +2,10 @@
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 mainmenu() {
 	echo "$(printBRed 'НАСТРОЙКА ПОРТОВ')"
-	echo "$(printBGreen ' 1 ')Открыть порт"
-	echo "$(printBGreen ' 2 ')Закрыть порт"
-	echo "$(printBGreen ' 3 ')Проверить статус портов"
+ 	echo "$(printBGreen ' 1 ')Просмотр открытых портов"
+	echo "$(printBGreen ' 2 ')Открыть порт"
+	echo "$(printBGreen ' 3 ')Закрыть порт"
+	echo "$(printBGreen ' 4 ')Проверить статус портов"
 	echo ' --------'
 	echo "$(printBBlue '  0 ')Назад"
 	echo "$(printBRed ' 10 ')Выход"
@@ -13,8 +14,15 @@ mainmenu() {
 #	Свойства меню
 	read -r ans
 		case $ans in
-
+		
 		1)
+  		clear && printlogo && echo "$(printBRed 'Просмотр открытых портов')"
+  		netstat -tupln | grep LISTEN
+    		mainmenu
+  		;;
+		
+		2)
+  		clear && printlogo
 		echo -n "Введите номер порта для открытия: "
 		read port
 		sudo ufw allow $port
@@ -22,7 +30,8 @@ mainmenu() {
 		mainmenu
 		;;
 
-		2)
+		3)
+  		clear && printlogo
 		echo -n "Введите номер порта для закрытия: "
 		read port
 		sudo ufw deny $port
@@ -30,7 +39,7 @@ mainmenu() {
 		mainmenu
 		;;
 
-		3)
+		4)
 		clear && printlogo && echo && sudo ufw status numbered
 		mainmenu
 		;;
