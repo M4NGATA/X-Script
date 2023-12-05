@@ -28,7 +28,7 @@ mainmenu() {
 }
 
 yes() {
-    sudo apt-get update && sudo apt upgrade -y && apt-get -y install console-cyrillic git wget fail2ban net-tools nano ufw bash-completion fail2ban && ufw enable && systemctl enable fail2ban && systemctl start fail2ban
+    sudo apt-get update && sudo apt upgrade -y && apt-get -y install console-cyrillic git wget fail2ban net-tools nano ufw bash-completion fail2ban && ufw enable && sudo ufw allow 22 && systemctl enable fail2ban && systemctl start fail2ban
     printlogo && echo "$(printBGreen 'ГОТОВО ;) ')" && submenu
 }
 
