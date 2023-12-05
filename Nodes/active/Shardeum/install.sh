@@ -79,7 +79,7 @@ subnmenu() {
 	read -r ans
 	case $ans in
 		*)
-		exit
+		mainmenu
         ;;
     esac
 }
