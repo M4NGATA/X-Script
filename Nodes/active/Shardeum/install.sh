@@ -79,8 +79,8 @@ subnmenu() {
 	read -r ans
 	case $ans in
 		*)
-		mainmenu
-        ;;
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Shardeum/main.sh)
+        	;;
     esac
 }
 
