@@ -2,6 +2,7 @@
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 mainmenu() {
 	echo "$(printBGreen ' БАЗОВАЯ НАСТРОЙКА СЕРВЕРА')"
+	echo "$(printRed	'ВЫПОЛНЯЙТЕ ЭТУ НАСТРОЙКУ ТОЛЬКО НА ЧИСТОМ СЕРВЕРЕ')"
 	echo "$(printBYellow	'Эта функция произведет базовую настройку сервера.')"
     echo "Будут установлены пакеты, требуемые для большинства"
     echo "нод, также она настроит защиту от брутфорс атак "
