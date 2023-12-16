@@ -2,9 +2,10 @@
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
     mainmenu() {
 		echo "$(printBYellow ' BABYLON')"
-		echo "$(printYellow 'Минимальные требования к оборудованию.')"
-		echo "$(printBCyan '	4CPU 8RAM 200GB')"
-		echo "$(printGreen  '-----------------------------------------')"
+		echo "$(printGreen  '--------------------------------------')"
+        echo "$(printYellow 'Минимальные требования к оборудованию.')"
+		echo "$(printBCyan  '	4CPU 8RAM 200GB')"
+		echo "$(printGreen  '--------------------------------------')"
 	    echo "$(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')"
         echo ' -------'
 	    echo "$(printGreen	'  1 Да')"
@@ -56,19 +57,7 @@ echo "$(printBGreen ' Download and build binaries...')"
         cd babylon
         git checkout v0.7.2
 
-# Build binaries
-    echo "$(printBYellow ' Build binaries')"
-        make build
-
-# Prepare binaries for Cosmovisor
-    echo "$(printBYellow ' Prepare binaries for Cosmovisor')"
-        mkdir -p $HOME/.babylond/cosmovisor/genesis/bin
-        mv build/babylond $HOME/.babylond/cosmovisor/genesis/bin/
-        rm -rf build
-
-# Create application symlinks
-    echo "$(printBYellow ' Create application symlinks')"
-        sudo ln -s $HOME/.babylond/cosmovisor/genesis $HOME/.babylond/cosmovisor/current -f
+# Build binariesecho "$(printBGreen ' 1 ')Управление"lond/cosmovisor/current -f
         sudo ln -s $HOME/.babylond/cosmovisor/current/bin/babylond /usr/local/bin/babylond -f
 
 
@@ -133,7 +122,25 @@ echo "$(printBYellow ' Set minimum gas price')"
 # Set pruning
 echo "$(printBYellow ' Set pruning')"
 sed -i \
-  -e 's|^pruning *=.*|pruning = "custom"|' \
+  -e 's|^pruning *=.*|pruning = "custosubmenu(){
+echo -ne "
+	$(printBGreen    'УСТАНОВКА ЗАВЕРШЕНА........') $(printBGreenBlink '!!!')
+	
+ 		1) Просмотреть логи
+ 		2) Проверить синхронизацию
+ 		3) В меню
+ 		
+	$(printBCyan 'Нажмите Enter:')  "
+	read -r ans
+	case $ans inecho "$(printBGreen ' 1 ')Управление"
+		printlogo
+		printnibiru
+		echo
+		echo $(printBRed '	Неверный запрос !!!')
+		submenu
+		;;
+	esac
+}m"|' \
   -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
   -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
   -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
@@ -152,16 +159,52 @@ curl -L https://snapshots.kjnodes.com/babylon-testnet/snapshot_latest.tar.lz4 | 
 #Start service and check the logs 
 sudo systemctl start babylon.service 
 
-
-
-
-
-
-
-
-
 }
 
+submenu
 
+submenu(){
+
+	    echo "$(printBGreen    'УСТАНОВКА ЗАВЕРШЕНА........') $(printBGreenBlink '!!!') "
+	    echo "$(printGreen  '--------------------------------------')"
+ 		echo "$(printBGreen ' 1 ')Просмотреть логи"
+ 		echo "$(printBGreen ' 2 ')Проверить синхронизацию"
+ 		echo "$(printBGreen ' 3 ')В меню"
+        echo -ne "$(printBGreen ' Ввод')$(printGreenBlink ': ')"
+	read -r ans
+	case $ans in
+		1)
+		subsubmenu
+		;;
+		2)
+		echo
+		babylond status 2>&1 | jq .SyncInfo
+		submenu
+		;;
+		3)
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Babylon/main.sh)
+		;;
+		*)
+		printlogo
+		printnibiru
+		echo
+		echo $(printBRed '	Неверный запрос !!!')
+		submenu
+		;;
+	esac
+}
+
+subsubmenu(){
+	echo -ne "
+	$(printYellow    'Для того что бы остановить журнал логов надо нажать') $(printBCyan 'CTRL+C') $(printYellow '!!!')
+	$(printBCyan 'Для продолжения нажмите Enter:')  "
+		read -r ans
+		case $ans in
+			*)
+			sudo journalctl -u babylon.service -f --no-hostname -o cat
+			submenu
+			;;
+	esac
+}
 
 mainmenu
