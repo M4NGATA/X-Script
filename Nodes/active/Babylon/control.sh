@@ -3,10 +3,10 @@
 mainmenu() { 
 		echo "$(printBYellow ' BABYLON')"
         echo "$(printBGreen ' 1 ')Управление токенами"
-		echo "$(printBGreen ' 1 ')Кошелек"
-		echo "$(printBGreen ' 2 ')Валидатор"
-		echo "$(printBGreen ' 3 ')Голосование"
-		echo "$(printBGreen ' 4 ')Обслуживание"
+		echo "$(printBGreen ' 2 ')Кошелек"
+		echo "$(printBGreen ' 3 ')Валидатор"
+		echo "$(printBGreen ' 4 ')Голосование"
+		echo "$(printBGreen ' 5 ')Обслуживание"
 		echo ' ---------'
 		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
@@ -23,15 +23,15 @@ read -r ans
         clear && printlogo && wallet
 		;;
 
-		2)
+		3)
 		clear && printlogo && validator
 		;;
 
-		3)
+		4)
 		clear && printlogo && governance
 		;;
 
-		4)
+		5)
 		clear && printlogo && setting
 		;;
 
