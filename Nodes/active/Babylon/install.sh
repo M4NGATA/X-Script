@@ -17,6 +17,7 @@
 		        1)
 		        yes
 		        ;;
+
 		        2)
 		        no
 		        ;;
@@ -158,10 +159,10 @@ curl -L https://snapshots.kjnodes.com/babylon-testnet/snapshot_latest.tar.lz4 | 
 
 #Start service and check the logs 
 sudo systemctl start babylon.service 
-
+submenu
 }
 
-submenu
+
 
 submenu(){
 
@@ -185,11 +186,7 @@ submenu(){
 		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Babylon/main.sh)
 		;;
 		*)
-		printlogo
-		printnibiru
-		echo
-		echo $(printBRed '	Неверный запрос !!!')
-		submenu
+		clear && printlogo && echo "$(printBRed ' Неверный запрос!')" && mainmenu
 		;;
 	esac
 }
