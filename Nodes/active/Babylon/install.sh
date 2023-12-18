@@ -129,25 +129,7 @@ echo "$(printBYellow ' Set minimum gas price')"
 # Set pruning
 echo "$(printBYellow ' Set pruning')"
 sed -i \
-  -e 's|^pruning *=.*|pruning = "custosubmenu(){
-echo -ne "
-	$(printBGreen    'УСТАНОВКА ЗАВЕРШЕНА........') $(printBGreenBlink '!!!')
-	
- 		1) Просмотреть логи
- 		2) Проверить синхронизацию
- 		3) В меню
- 		
-	$(printBCyan 'Нажмите Enter:')  "
-	read -r ans
-	case $ans inecho "$(printBGreen ' 1 ')Управление"
-		printlogo
-		printnibiru
-		echo
-		echo $(printBRed '	Неверный запрос !!!')
-		submenu
-		;;
-	esac
-}m"|' \
+  -e 's|^pruning *=.*|pruning = "custom"|' \
   -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
   -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
   -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
