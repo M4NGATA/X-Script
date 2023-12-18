@@ -59,7 +59,13 @@ echo "$(printBGreen ' Download and build binaries...')"
         git checkout v0.7.2
 
 # Build binariesecho 
-        sudo ln -s $HOME/.babylond/cosmovisor/current/bin/babylond /usr/local/bin/babylond -f
+make build
+mkdir -p $HOME/.babylond/cosmovisor/genesis/bin
+mv build/babylond $HOME/.babylond/cosmovisor/genesis/bin/
+rm -rf build
+sudo ln -s $HOME/.babylond/cosmovisor/genesis $HOME/.babylond/cosmovisor/current -f
+sudo ln -s $HOME/.babylond/cosmovisor/current/bin/babylond /usr/local/bin/babylond -f
+
 
 
 #Install Cosmovisor and create a service 
