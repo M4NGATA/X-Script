@@ -3,7 +3,7 @@
     mainmenu() {
 		echo "$(printBYellow ' BABYLON')"
 		echo "$(printGreen  '--------------------------------------')"
-        echo "$(printYellow 'Минимальные требования к оборудованию.')"
+        echo "$(printYellow 'Рекомендуемые требования к оборудованию.')"
 		echo "$(printBCyan  '	4CPU 8RAM 200GB')"
 		echo "$(printGreen  '--------------------------------------')"
 	    echo "$(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')"
@@ -58,7 +58,7 @@ echo "$(printBGreen ' Download and build binaries...')"
         cd babylon
         git checkout v0.7.2
 
-# Build binariesecho "$(printBGreen ' 1 ')Управление"lond/cosmovisor/current -f
+# Build binariesecho 
         sudo ln -s $HOME/.babylond/cosmovisor/current/bin/babylond /usr/local/bin/babylond -f
 
 
