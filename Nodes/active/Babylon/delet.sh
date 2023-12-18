@@ -2,7 +2,7 @@
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 mainmenu() { 
 		echo "$(printBYellow ' BABYLON')"
-  echo "$(printBYellow 'Вы действительно хотите удалить Elixir') $(printBRedBlink '!!!')"
+  echo "$(printBYellow 'Вы действительно хотите удалить Babylon') $(printBRedBlink '!!!')"
 
 	echo "$(printBRed '1) Да')"
 	echo "$(printBGreen '2) Нет')"
@@ -28,8 +28,7 @@ source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/a
 }
 
 yes(){
-clear
-printlogo
+clear && printlogo
 echo -ne "	
 
 $(printBYellow 'Удаляем.....!')"

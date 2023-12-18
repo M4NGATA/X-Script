@@ -25,7 +25,7 @@ read -r ans
 		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Babylon/install.sh)
 		;;
 		4)
-		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Babylon/dellet.sh)
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Babylon/delet.sh)
 		;;
 		5)
 		info
