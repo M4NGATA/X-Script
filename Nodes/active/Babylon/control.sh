@@ -436,11 +436,12 @@ setting(){
         9)
 		clear && printlogo
         sudo systemctl stop babylon.service
-        mkdir babylon_backup_validator_key
-        mkdir babylon_backup_validator_key/Snapshots
-        cp $HOME/.babylond/data/priv_validator_state.json $HOME/babylon_backup_validator_key/Snapshots/priv_validator_state.json.backup
-        curl -L https://snapshots.kjnodes.com/babylon-testnet/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.babylond
-        mv $HOME/babylon_backup_validator_key/Snapshots/priv_validator_state.json.backup $HOME/.babylond/data/priv_validator_state.json
+		mkdir -p $HOME/babylon_backup_validator_key/cash_backup
+		cp $HOME/.babylond/config/priv_validator_key.json $HOME/babylon_backup_validator_key/cash_backup/priv_validator_key.json.backup
+		cp $HOME/.babylond/data/priv_validator_state.json $HOME/babylon_backup_validator_key/cash_backup/priv_validator_state.json.backup
+		curl -L https://snapshots.kjnodes.com/babylon-testnet/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.babylond
+		cp $HOME/babylon_backup_validator_key/cash_backup/priv_validator_key.json.backup $HOME/.babylond/config/priv_validator_key.jso
+		cp $HOME/babylon_backup_validator_key/cash_backup/priv_validator_state.json.backup $HOME/.babylond/data/priv_validator_state.json
         sudo systemctl start babylon.service
         echo "$(printBGreen ' Готово ')"
         setting
