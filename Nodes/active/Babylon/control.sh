@@ -179,7 +179,11 @@ wallet(){
 
         5)
 		clear && printlogo
-        babylond create-bls-key $(babylond keys show wallet -a) && wallet
+        babylond create-bls-key $(babylond keys show wallet -a) 
+		sed -i -e "s|^key-name *=.*|key-name = \"wallet\"|" $HOME/.babylond/config/app.toml
+		sed -i -e "s|^timeout_commit *=.*|timeout_commit = \"10s\"|" $HOME/.babylond/config/config.toml
+		echo "Готово"
+		wallet
         ;;
 
 		0)
