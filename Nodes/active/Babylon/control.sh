@@ -91,7 +91,7 @@ token(){
 		clear && printlogo
         echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR3
-		babylond tx epoching redelegate $(babylond keys show wallet --bech val -a) <TO_VALOPER_ADDRESS> 1000000ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
+		babylond tx epoching redelegate $(babylond keys show wallet --bech val -a) bbnvaloper1m29dx2h8krydg3ayrnmehs3eywwjxzfun2kp80 1000000ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
         token
 		;;
 
@@ -259,11 +259,12 @@ validator(){
 
         8)
 		clear && printlogo
-		sudo systemctl stop babylon.service
 		mkdir -p $HOME/babylon_backup_validator_key
 		cp $HOME/.babylond/config/priv_validator_key.json $HOME/babylon_backup_validator_key/priv_validator_key.json.backup
 		cp $HOME/.babylond/data/priv_validator_state.json $HOME/babylon_backup_validator_key/priv_validator_state.json.backup
-        sudo systemctl start babylon.service
+		echo "$(printBRed ' Внимание!')"
+		echo Резервная копия хранится в папке $HOME/babylon_backup_validator_key
+		echo 
         validator
         ;;
 
