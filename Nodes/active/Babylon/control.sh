@@ -259,9 +259,10 @@ validator(){
 
         8)
 		clear && printlogo
-        sudo systemctl stop babylon.service
-        mkdir $HOME/babylon_backup_validator_key
-        cp $HOME/.babylond/data/priv_validator_state.json $HOME/babylon_backup_validator_key/Snapshots/priv_validator_state.json.backup
+		sudo systemctl stop babylon.service
+		mkdir -p $HOME/babylon_backup_validator_key
+		cp $HOME/.babylond/config/priv_validator_key.json $HOME/babylon_backup_validator_key/priv_validator_key.json.backup
+		cp $HOME/.babylond/data/priv_validator_state.json $HOME/babylon_backup_validator_key/priv_validator_state.json.backup
         sudo systemctl start babylon.service
         validator
         ;;
@@ -270,6 +271,7 @@ validator(){
 		clear && printlogo
         sudo systemctl stop babylon.service
         cp $HOME/babylon_backup_validator_key/priv_validator_state.json.backup $HOME/.babylond/data/priv_validator_state.json
+		cp $HOME/babylon_backup_validator_key/priv_validator_key.json.backup $HOME/.babylond/config/priv_validator_key.json
         sudo systemctl start babylon.service
         validator
         ;;
