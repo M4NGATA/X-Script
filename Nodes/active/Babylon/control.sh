@@ -182,6 +182,7 @@ wallet(){
         babylond create-bls-key $(babylond keys show wallet -a) 
 		sed -i -e "s|^key-name *=.*|key-name = \"wallet\"|" $HOME/.babylond/config/app.toml
 		sed -i -e "s|^timeout_commit *=.*|timeout_commit = \"10s\"|" $HOME/.babylond/config/config.toml
+		sudo systemctl restart babylon.service
 		echo "Готово"
 		wallet
         ;;
@@ -226,7 +227,7 @@ validator(){
 		2)
 		clear && printlogo
         read -r -p "  Введите имя валидатора:  " VAR1
-        babylond tx checkpointing create-validator --amount 1000000ubbn --pubkey $(babylond tendermint show-validator) --moniker"$VAR1" --chain-id bbn-test-2 --commission-rate 0.05 --commission-max-rate 0.20 --commission-max-change-rate 0.01 --min-self-delegation 1 --from wallet --gas-adjustment 1.4 --gas auto --fees 10ubbn
+        babylond tx checkpointing create-validator --amount 1000000ubbn --pubkey $(babylond tendermint show-validator) --moniker "$VAR1" --chain-id bbn-test-2 --commission-rate 0.05 --commission-max-rate 0.20 --commission-max-change-rate 0.01 --min-self-delegation 1 --from wallet --gas-adjustment 1.4 --gas auto --fees 10ubbn
 		validator
         ;;
 
