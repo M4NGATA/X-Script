@@ -146,6 +146,7 @@ curl -L https://snapshots.kjnodes.com/babylon-testnet/snapshot_latest.tar.lz4 | 
 [[ -f $HOME/.babylond/data/upgrade-info.json ]] && cp $HOME/.babylond/data/upgrade-info.json $HOME/.babylond/cosmovisor/genesis/upgrade-info.json
 
 #Start service and check the logs
+cd
 sudo systemctl start babylon.service 
 submenu
 }

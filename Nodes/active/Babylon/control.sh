@@ -370,7 +370,7 @@ setting(){
         echo "$(printBGreen ' 5 ')Остановить ноду"
         echo "$(printBGreen ' 6 ')Перезапустить ноду"
         echo "$(printBGreen ' 7 ')Просмотреть статус ноды"
-        echo "$(printBGreen ' 8 ')Просмотреть журнал обслуживания ноды"
+        echo "$(printBGreen ' 8 ')Просмотреть логи"
         echo "$(printBGreen ' 9 ')Очистить кэш"
 		echo ' ---------'
 		echo "$(printBBlue '  0 ')Назад"
