@@ -11,7 +11,7 @@ printlogo() {
 
 
  echo -e "${color}""  +-+-+-+-+-+-+-+"
- echo "   |X|-|l|1|b|r|a|"
+ echo "      X-l1bra"
  echo -e "  +-+-+-+-+-+-+-+"" ${reset}"
 
 }
