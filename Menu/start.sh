@@ -2,10 +2,9 @@
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 	mainmenu() {
 		echo "$(printBMagenta ' ОСНОВНОЕ МЕНЮ')"
-		echo "$(printBGreen ' 1 ')Новости"
-		echo "$(printBGreen ' 2 ')Ноды"
-		echo "$(printBGreen ' 3 ')Смартконтракты"
-		echo "$(printBGreen ' 4 ')Сервер"
+		echo "$(printBGreen ' 1 ')Ноды"
+		echo "$(printBGreen ' 2 ')Смартконтракты"
+		echo "$(printBGreen ' 3 ')Сервер"
 		echo ' --------'
 		echo "$(printBRed ' 10 ')Выход"
 		echo ' --------'
@@ -15,18 +14,14 @@
 		case $ans in
 
 			1)
-			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/news/news.sh)
-			;;
-
-			2)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/menu_nodes.sh)
 			;;
 
-			3)
+			2)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/menu_smart.sh)
 			;;
 
-			4)
+			3)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Function/server/server.sh)
 			;;
 			
