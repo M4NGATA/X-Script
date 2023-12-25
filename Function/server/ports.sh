@@ -2,7 +2,7 @@
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 mainmenu() {
 	echo "$(printBRed 'НАСТРОЙКА ПОРТОВ')"
- 	echo "$(printBGreen ' 1 ')Просмотр открытых портов"
+ 	echo "$(printBGreen ' 1 ')Просмотр активных портов"
 	echo "$(printBGreen ' 2 ')Открыть порт"
 	echo "$(printBGreen ' 3 ')Закрыть порт"
 	echo "$(printBGreen ' 4 ')Проверить статус портов"
