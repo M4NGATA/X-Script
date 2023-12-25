@@ -212,6 +212,7 @@ validator(){
         echo "$(printBGreen ' 7 ')Проверить правильность ключа валидатора"
         echo "$(printBGreen ' 8 ')Создать резервную копию ключа валидатора"
         echo "$(printBGreen ' 9 ')Востановить валидатор"
+		echo "$(printBGreen ' 11 ')Показать ключ валидатора"
 		echo ' ---------'
 		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
@@ -276,6 +277,12 @@ validator(){
         sudo systemctl start babylon.service
         validator
         ;;
+
+		11)
+		clear && printlogo && echo
+		cat .babylond/config/priv_validator_key.json
+		echo && mainmenu
+		;;
 
 		0)
 		clear && printlogo && mainmenu
