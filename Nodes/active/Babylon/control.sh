@@ -281,7 +281,7 @@ validator(){
 		11)
 		clear && printlogo && echo
 		cat .babylond/config/priv_validator_key.json
-		echo && mainmenu
+		echo && validator
 		;;
 
 		0)
