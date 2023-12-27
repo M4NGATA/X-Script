@@ -55,10 +55,11 @@ token(){
 		echo "$(printBGreen ' 2 ')Снять вознаграждения со всех валидаторов"
 		echo "$(printBGreen ' 3 ')Снять комиссионные и вознаграждения с вашего валидатора"
         echo "$(printBGreen ' 4 ')Делегируйте токены в X-l1bra"
-		echo "$(printBGreen ' 5 ')Делегировать токены себе"
-        echo "$(printBGreen ' 6 ')Делегировать токены другому валидатору"
-		echo "$(printBGreen ' 7 ')Передать токенов другому валидатору"
-        echo "$(printBGreen ' 8 ')Отвязать токены от вашего валидатора"
+		echo "$(printBGreen ' 5 ')Делегируйте токены в DZHAGERR"
+		echo "$(printBGreen ' 6 ')Делегировать токены себе"
+        echo "$(printBGreen ' 7 ')Делегировать токены другому валидатору"
+		echo "$(printBGreen ' 8 ')Передать токенов другому валидатору"
+        echo "$(printBGreen ' 9 ')Отвязать токены от вашего валидатора"
 		echo ' ---------'
 		echo "$(printBBlue '  0 ')Назад"
 		echo "$(printBRed ' 10 ')Выход"
@@ -95,7 +96,15 @@ token(){
         token
 		;;
 
-        5)
+		5)
+		clear && printlogo
+        echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
+        read -r -p "  Введите количество монет ubbn:  " VAR3
+		babylond tx epoching redelegate $(babylond keys show wallet --bech val -a) bbnvaloper1wf3j7yy5yraajj89wjvk0a77v2u4vr809n7jnk 1000000ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
+        token
+		;;
+
+        6)
 		clear && printlogo
         echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR4
@@ -103,7 +112,7 @@ token(){
         token
         ;;
 
-        6)
+        7)
 		clear && printlogo
         read -r -p "  Введите адрес валидатора:  " VAR5
         echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
@@ -112,7 +121,7 @@ token(){
         token
         ;;
 
-        7)
+        8)
 		clear && printlogo
         read -r -p "  Введите адрес валидатора:  " VAR6
         echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
@@ -121,7 +130,7 @@ token(){
         token
         ;;
 
-        8)
+        9)
 		clear && printlogo
         echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR8
