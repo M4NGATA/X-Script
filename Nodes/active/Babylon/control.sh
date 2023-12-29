@@ -1,5 +1,5 @@
 #!/bin/bash
-	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
+	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/C-Script/main/Common/theme.sh) && printlogo
 mainmenu() { 
 		echo "$(printBYellow ' BABYLON')"
         echo "$(printBGreen ' 1 ')Управление токенами"
@@ -36,7 +36,7 @@ read -r ans
 		;;
 
 		0)
-		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Babylon/main.sh)
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/C-Script/main/Nodes/active/Babylon/main.sh)
 		;;
 
 		10)
@@ -70,7 +70,7 @@ token(){
 		1)
 		clear && printlogo
         read -r -p "  Введите адрес кошелька:  " VAR1
-        echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
+        echo -ne "$(printBYellow ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR2
 		babylond tx bank send wallet "$VAR1" "$VAR2"ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
         token
@@ -90,7 +90,7 @@ token(){
 
 		4)
 		clear && printlogo
-        echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
+        echo -ne "$(printBYellow ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR3
 		babylond tx epoching redelegate $(babylond keys show wallet --bech val -a) bbnvaloper1m29dx2h8krydg3ayrnmehs3eywwjxzfun2kp80 1000000ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
         token
@@ -98,7 +98,7 @@ token(){
 
 		5)
 		clear && printlogo
-        echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
+        echo -ne "$(printBYellow ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR3
 		babylond tx epoching redelegate $(babylond keys show wallet --bech val -a) bbnvaloper1wf3j7yy5yraajj89wjvk0a77v2u4vr809n7jnk 1000000ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
         token
@@ -106,7 +106,7 @@ token(){
 
         6)
 		clear && printlogo
-        echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
+        echo -ne "$(printBYellow ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR4
         babylond tx epoching delegate $(babylond keys show wallet --bech val -a) "$VAR4"ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
         token
@@ -115,7 +115,7 @@ token(){
         7)
 		clear && printlogo
         read -r -p "  Введите адрес валидатора:  " VAR5
-        echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
+        echo -ne "$(printBYellow ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR6
         babylond tx epoching delegate "$VAR5" "$VAR6"ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
         token
@@ -124,7 +124,7 @@ token(){
         8)
 		clear && printlogo
         read -r -p "  Введите адрес валидатора:  " VAR6
-        echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
+        echo -ne "$(printBYellow ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR7
         babylond tx epoching redelegate $(babylond keys show wallet --bech val -a) "$VAR6" "$VAR7"ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
         token
@@ -132,7 +132,7 @@ token(){
 
         9)
 		clear && printlogo
-        echo -ne "(printBRed ' 1bbn = 1000000ubbn')"
+        echo -ne "$(printBYellow ' 1bbn = 1000000ubbn')"
         read -r -p "  Введите количество монет ubbn:  " VAR8
         babylond tx epoching unbond $(babylond keys show wallet --bech val -a) "$VAR8"ubbn --from wallet --chain-id bbn-test-2 --gas-adjustment 1.4 --gas auto --fees 10ubbn -y
         token
