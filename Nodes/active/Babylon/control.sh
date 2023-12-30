@@ -1,5 +1,5 @@
 #!/bin/bash
-	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/C-Script/main/Common/theme.sh) && printlogo
+	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 mainmenu() { 
 		echo "$(printBYellow ' BABYLON')"
         echo "$(printBGreen ' 1 ')Управление токенами"
@@ -36,7 +36,7 @@ read -r ans
 		;;
 
 		0)
-		source <(curl -s https://raw.githubusercontent.com/M4NGATA/C-Script/main/Nodes/active/Babylon/main.sh)
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Babylon/main.sh)
 		;;
 
 		10)
