@@ -5,7 +5,8 @@
 		echo "$(printBGreen ' 1 ')Babylon"
 		echo "$(printBGreen ' 2 ')Shardeum"
 		echo "$(printBGreen ' 3 ')Elixir"
-		echo "$(printBGreen ' 4 ')Holograph"
+		echo "$(printBGreen ' 4 ')Zora"
+		echo "$(printBGreen ' 5 ')Holograph"
 		echo ' ---------'
 		echo "$(printBYellow ' 9)') $(printBYellow 'Архив')"
 		echo ' ---------'
@@ -29,6 +30,10 @@
 			;;
 
 			4)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Zora/main.sh)
+			;;
+			
+			5)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Holograph/main.sh)
 			;;
 
