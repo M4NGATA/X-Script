@@ -23,7 +23,7 @@
 			3) source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Elixir/main.sh) ;;
 			4) source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Zora/main.sh) ;;
 			5) source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Holograph/main.sh) ;;
-			6) source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Projects/Taiko/main.sh) ;;
+			6) clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Projects/Taiko/main.sh) ;;
 			9) source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/archive_nodes.sh) ;;
 			0) source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Menu/start.sh) ;;
 			10) echo $(printBCyan '	"Bye bye."') && exit ;;
