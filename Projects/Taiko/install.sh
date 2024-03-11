@@ -24,9 +24,6 @@ choice="${choice:-y}"
     read -p $'\e[1;33mВведите L1_ENDPOINT_WS: \e[0m' l1_endpoint_ws
     read -p $'\e[1;33mВведите L1_PROPOSER_PRIVATE_KEY: \e[0m' L1_PROPOSER_PRIVATE_KEY
 
-# Ask for L1_PROPOSER_PRIVATE_KEY
-    read -p $'\e[1;33mEnter L1_PROPOSER_PRIVATE_KEY: \e[0m' L1_PROPOSER_PRIVATE_KEY
-
 # Install dependencies
     sudo apt update
     sudo apt install -y apt-transport-https ca-certificates curl software-properties-common git
