@@ -7,6 +7,7 @@
 		echo "$(printBGreen ' 3 ')Elixir"
 		echo "$(printBGreen ' 4 ')Zora"
 		echo "$(printBGreen ' 5 ')Holograph"
+		echo "$(printBGreen ' 6 ')Taiko"
 		echo ' ---------'
 		echo "$(printBYellow ' 9)') $(printBYellow 'Архив')"
 		echo ' ---------'
@@ -35,6 +36,10 @@
 			
 			5)
 			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/Holograph/main.sh)
+			;;
+
+			6)
+			source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Projects/Taiko/main.sh) ;;
 			;;
 
 			9)
