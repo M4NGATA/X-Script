@@ -15,9 +15,9 @@ choice="${choice:-y}"
         exit 1
     fi
 
-    cd simple-taiko-node
+    cd simple-taiko-node  || exit 1
     docker compose down -v
-    cd ..
+    cd - || exit
 
     echo -e "\e[1;32mУдаление узла Taiko завершено.\e[0m Нажмите Enter, чтобы продолжить..."
     read
