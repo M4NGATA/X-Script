@@ -11,7 +11,7 @@ while true; do
     cmd=(dialog --keep-tite --menu "Select options:" 22 76 16)
     options=(1 "Install Taiko Katla Node"
              2 "Install Hekla aNode"
-             3 "View Logs Katla Node"
+             3 "View Logs Hekla Node"
              4 "View link Graphana"
              5 "Exit")
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
