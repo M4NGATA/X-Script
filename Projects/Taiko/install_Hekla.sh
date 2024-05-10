@@ -55,7 +55,7 @@ while true; do
         3)
             # View Logs Katla Node:
             echo "Viewing logs..."
-            su - ethuser -c 'cd eth-docker && ./ethd logs -f'
+            journalctl -u taiko-node -f -o cat -n 1000
             ;;
         4)
             # View link Graphana:
