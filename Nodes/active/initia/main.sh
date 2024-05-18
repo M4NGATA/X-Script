@@ -38,4 +38,4 @@ read -r ans
 	esac
 }
 
-
+mainmenu
