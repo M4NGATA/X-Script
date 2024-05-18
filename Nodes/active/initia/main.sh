@@ -15,7 +15,7 @@ mainmenu() {
 read -r ans
 	case $ans in
 		1)
-		control
+		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/initia/controls.sh)
 		;;
 		2)
 		source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/initia/install_node.sh)
