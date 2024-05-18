@@ -4,7 +4,7 @@ read -p "Вы уверены что хотите начать установку
 echo    # (optional) move to a new line
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
-    exit 1
+    source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Nodes/active/initia/main.sh)
 fi
 
 # Clone repository
