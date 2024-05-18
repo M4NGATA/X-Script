@@ -1,6 +1,4 @@
 #!/bin/bash
-
-#!/bin/bash
 	clear && source <(curl -s https://raw.githubusercontent.com/M4NGATA/X-Script/main/Common/theme.sh) && printlogo
 mainmenu() { 
 		echo "$(printBMagenta 'Initia')"
